@@ -47,17 +47,17 @@ const MoreControl = (props: MoreControlProps) => {
       {
         id: 'lock',
         icon: <IconUnlock size={ICON_SIZE} color={ICON_COLOR} />,
-        label: 'Lock',
+        label: '加锁',
       },
       {
         id: 'speed',
         icon: <IconZap size={ICON_SIZE} color={ICON_COLOR} />,
-        label: 'Playback Speed',
+        label: '播放倍数',
       },
       {
         id: 'repeat',
         icon: <IconRepeat size={ICON_SIZE} color={ICON_COLOR} />,
-        label: 'Repeat Mode',
+        label: '重复模式',
       },
       // {
       //   id: 'reload',

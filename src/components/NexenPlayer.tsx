@@ -1006,7 +1006,7 @@ const NexenPlayer = React.forwardRef<NexenPlayerRef, NexenPlayerProps>(
       const newSpeed = value as PlaybackSpeed;
       tipViewRef.current?.updateState({
         showTip: true,
-        tipText: `${newSpeed}x Speed`,
+        tipText: `${newSpeed}x 倍速`,
         autoHide: true,
         withIcon: true,
         icon: <IconZap size={TIP_VIEW_ICON_SIZE} color={TIP_VIEW_ICON_COLOR} />,
@@ -1049,7 +1049,7 @@ const NexenPlayer = React.forwardRef<NexenPlayerRef, NexenPlayerProps>(
         setPaused(false);
         tipViewRef.current?.updateState({
           showTip: true,
-          tipText: 'Playing',
+          tipText: '播放',
           autoHide: true,
           withIcon: true,
           icon: (
@@ -1060,7 +1060,7 @@ const NexenPlayer = React.forwardRef<NexenPlayerRef, NexenPlayerProps>(
         setPaused(true);
         tipViewRef.current?.updateState({
           showTip: true,
-          tipText: 'Paused',
+          tipText: '暂停',
           autoHide: true,
           withIcon: true,
           icon: (
@@ -1108,7 +1108,7 @@ const NexenPlayer = React.forwardRef<NexenPlayerRef, NexenPlayerProps>(
     const handleRepeatVideo = (repeat: boolean) => {
       tipViewRef.current?.updateState({
         showTip: true,
-        tipText: repeat ? 'Repeat On' : 'Repeat Off',
+        tipText: repeat ? '开启重复' : '关闭重复',
         autoHide: true,
         withIcon: true,
         icon: (
@@ -1146,7 +1146,7 @@ const NexenPlayer = React.forwardRef<NexenPlayerRef, NexenPlayerProps>(
     const handleLockScreen = () => {
       tipViewRef.current?.updateState({
         showTip: true,
-        tipText: 'Locked',
+        tipText: '加锁',
         autoHide: true,
         withIcon: true,
         icon: (
@@ -1159,7 +1159,7 @@ const NexenPlayer = React.forwardRef<NexenPlayerRef, NexenPlayerProps>(
 
     const handleTextTracks = (textTracks?: any[]) => {
       const selectedTrack = textTracks?.find((x: any) => {
-        return x.selected;
+        return x?.selected;
       });
 
       setDropdownTextTracks(textTracks);
@@ -1178,7 +1178,7 @@ const NexenPlayer = React.forwardRef<NexenPlayerRef, NexenPlayerProps>(
 
     const handleAudioTracks = (audioTracks: any[]) => {
       const selectedTrack = audioTracks?.find((x: any) => {
-        return x.selected;
+        return x?.selected;
       });
       setDropdownAudioTracks(audioTracks);
       if (selectedTrack?.language) {
@@ -1285,7 +1285,7 @@ const NexenPlayer = React.forwardRef<NexenPlayerRef, NexenPlayerProps>(
     const handleMuteVideo = (mute: boolean) => {
       tipViewRef.current?.updateState({
         showTip: true,
-        tipText: mute ? 'Sound Off' : 'Sound On',
+        tipText: mute ? '禁音' : '打开声音',
         autoHide: true,
       });
       isVolumeSeekable.current = !mute;
@@ -1315,7 +1315,7 @@ const NexenPlayer = React.forwardRef<NexenPlayerRef, NexenPlayerProps>(
       gestureEnabled.current = true;
       tipViewRef.current?.updateState({
         showTip: true,
-        tipText: 'Unlocked',
+        tipText: '解锁',
         autoHide: true,
         withIcon: true,
         icon: (
@@ -1364,7 +1364,7 @@ const NexenPlayer = React.forwardRef<NexenPlayerRef, NexenPlayerProps>(
         videoRef.current?.setNativeProps({ volume: value / 100 });
         tipViewRef.current?.updateState({
           showTip: true,
-          tipText: `Volume : ${value}%`,
+          tipText: `音量 : ${value}%`,
           autoHide: false,
         });
         onVolumeUpdate?.(value);
@@ -1377,7 +1377,7 @@ const NexenPlayer = React.forwardRef<NexenPlayerRef, NexenPlayerProps>(
         videoRef.current?.setNativeProps({ volume: value / 100 });
         tipViewRef.current?.updateState({
           showTip: true,
-          tipText: `Volume : ${value}%`,
+          tipText: `音量 : ${value}%`,
           autoHide: false,
         });
         onVolumeUpdate?.(value);

@@ -306,7 +306,7 @@ export default SlideButton;
 SlideButton.defaultProps = {
   width: '100%',
   padding: 0,
-  title: 'Slide to unlock',
+  title: '滑动解锁',
   completeThreshold: 60,
   iconSize: 18,
   disabled: false,
