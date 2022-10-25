@@ -1515,6 +1515,14 @@ const NexenPlayer = React.forwardRef<NexenPlayerRef, NexenPlayerProps>(
               onSeek={_onSeek}
               onEnd={_onEnd}
               onError={_onError}
+              mixWithOthers="duck"
+              minLoadRetryCount={6}
+              ignoreSilentSwitch="ignore"
+              pictureInPicture={true}
+              playInBackground={true}
+              allowsExternalPlayback={true}
+              disableFocus={true}
+              playWhenInactive={true} 
             />
           ) : null
         ) : (
