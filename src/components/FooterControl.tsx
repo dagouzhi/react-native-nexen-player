@@ -21,6 +21,7 @@ import {
   IconPauseCircle,
   IconFilm,
   IconAspectRatio,
+  IconAirplay,
 } from '../assets/icons';
 import IconButton from './IconButton';
 import { formatTime } from '../utils/StringUtil';
@@ -55,6 +56,7 @@ type FooterControlProps = {
   onVolumePress?: () => void;
   onStopPress?: () => void;
   onCcPress?: () => void;
+  onAirplayPress?: () => void;
   onVideoListPress?: () => void;
   onFastForward?: () => void;
   onRewind?: () => void;
@@ -109,6 +111,7 @@ const FooterControl = React.forwardRef<FooterControlRef, FooterControlProps>(
       disablePlaylistAndSkip,
       onPlayPress,
       onCcPress,
+      onAirplayPress,
       onVideoListPress,
       onFullScreenPress,
       onVolumePress,
@@ -454,6 +457,12 @@ const FooterControl = React.forwardRef<FooterControlRef, FooterControlProps>(
               alignItems: 'center',
             }}
           >
+            {
+              !playerConfig?.disableAirplay && !locked && <IconButton onPress={onAirplayPress}>
+                <IconAirplay size={ICON_SIZE} color={ICON_COLOR} />
+              </IconButton>
+            }
+
             {!playerConfig?.disableSubtitle && (
               <IconButton onPress={onCcPress}>
                 <IconSubtitle size={ICON_SIZE} color={ICON_COLOR} />

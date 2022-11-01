@@ -170,6 +170,7 @@ export type NexenConfig = {
   disableFullscreen?: boolean;
   disablePlayList?: boolean;
   disableSubtitle?: boolean;
+  disableAirplay?: boolean;
 };
 
 export type NexenPlayerProps = {
@@ -193,6 +194,7 @@ export type NexenPlayerProps = {
   onSpeedUpdate?: (speed: PlaybackSpeed) => void;
   onPlayListItemSelect?: (index: number) => void;
   onScreenLockUpdate?: (locked: boolean) => void;
+  onAirplay?: (source: NexenSource) => void;
   onLoad?: (index?: number) => void;
   onError?: (error: string) => void;
 };
@@ -220,6 +222,7 @@ const NexenPlayer = React.forwardRef<NexenPlayerRef, NexenPlayerProps>(
       onSpeedUpdate,
       onPlayListItemSelect,
       onScreenLockUpdate,
+      onAirplay,
       onLoad,
       onError,
     } = props;
@@ -1081,6 +1084,10 @@ const NexenPlayer = React.forwardRef<NexenPlayerRef, NexenPlayerProps>(
       gestureEnabled.current = false;
     };
 
+    const _onAirplayPress = () => {
+      onAirplay?.(newSource);
+    }
+
     const _onStopPress = () => {
       handleStopPlayback();
     };
@@ -1625,6 +1632,7 @@ const NexenPlayer = React.forwardRef<NexenPlayerRef, NexenPlayerProps>(
               onFullScreenPress={_onToggleFullScreen}
               onVolumePress={_onToggleVolume}
               onCcPress={_onCcPress}
+              onAirplayPress={_onAirplayPress}
               onVideoListPress={_onVideoListPress}
               onAspectRatioPress={_onAspectRatioPress}
               onRewind={_onRewind}

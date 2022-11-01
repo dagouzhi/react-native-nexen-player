@@ -32,6 +32,7 @@ import IconXCircle from './x-circle'
 import IconSubtitle from './subtitle'
 import IconZap from './zap'
 import IconFilm from './film'
+import IconAirplay from './airplay'
 
 export {
     IconLoader,
@@ -68,6 +69,7 @@ export {
     IconSubtitle,
     IconZap,
     IconFilm,
+    IconAirplay,
 }
 
     
