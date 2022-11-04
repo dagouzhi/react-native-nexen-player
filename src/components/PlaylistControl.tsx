@@ -5,6 +5,7 @@ import {
   ListRenderItemInfo,
   StyleProp,
   StyleSheet,
+  Text,
   TouchableOpacity,
   View,
   ViewStyle,
@@ -66,7 +67,7 @@ const PlaylistControl = (props: PlaylistControlProps) => {
 
     return (
       <TouchableOpacity
-        style={[styles.itemContainer, itemStyle]}
+        style={[styles.itemContainer, itemStyle, index === playlistIndex ? styles.itemOn : undefined]}
         activeOpacity={0.6}
         onPress={() => {
           onPlayListItemPress?.(index);
@@ -76,6 +77,7 @@ const PlaylistControl = (props: PlaylistControlProps) => {
           style={[styles.image, itemStyle]}
           source={{ uri: item.itemSource.poster }}
         />
+        <Text style={[styles.title]}>{item.itemSource?.title}</Text>
         {index !== playlistIndex && (
           <IconPlayCircle
             style={styles.icon}
@@ -154,8 +156,20 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  itemOn: {
+    borderWidth: 3,
+    borderColor: 'red',
+  },
   image: {
     resizeMode: 'cover',
+  },
+  title: {
+    backgroundColor: '#fff',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    padding: 5,
+    fontSize: 12,
   },
   icon: {
     position: 'absolute',
