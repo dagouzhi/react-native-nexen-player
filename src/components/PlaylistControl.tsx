@@ -41,9 +41,9 @@ const PlaylistControl = (props: PlaylistControlProps) => {
 
   const CONTAINER_HEIGHT = StyleSheet.flatten(style).height || 120;
   const CONTAINER_PADDING = 16;
-  const ITEM_HEIGHT = fullScreen
+  const ITEM_HEIGHT = (fullScreen
     ? Number(CONTAINER_HEIGHT) - CONTAINER_PADDING - insets?.bottom!
-    : Number(CONTAINER_HEIGHT) - CONTAINER_PADDING * 2;
+    : Number(CONTAINER_HEIGHT) - CONTAINER_PADDING * 2 || 100);
   const ITEM_WIDTH = ITEM_HEIGHT * (16 / 9);
   const ICON_SIZE = ITEM_HEIGHT * 0.6;
 
@@ -61,8 +61,8 @@ const PlaylistControl = (props: PlaylistControlProps) => {
     index,
   }: ListRenderItemInfo<PlayListItem>) => {
     const itemStyle = {
-      width: ITEM_WIDTH,
-      height: ITEM_HEIGHT,
+      width: !Number.isNaN(ITEM_WIDTH) ? ITEM_WIDTH : 100,
+      height: !Number.isNaN(ITEM_HEIGHT) ? ITEM_HEIGHT : 100,
     };
 
     return (
@@ -75,13 +75,13 @@ const PlaylistControl = (props: PlaylistControlProps) => {
       >
         <Image
           style={[styles.image, itemStyle]}
-          source={{ uri: item.itemSource.poster }}
+          source={{ uri: item.itemSource.poster || 'https://console.dagouzhi.com/config/assets/rooms_icon.png' }}
         />
         <Text style={[styles.title]}>{item.itemSource?.title}</Text>
         {index !== playlistIndex && (
           <IconPlayCircle
             style={styles.icon}
-            size={ICON_SIZE}
+            size={(ICON_SIZE || 50)}
             color={'#fafafa'}
           />
         )}
@@ -112,7 +112,7 @@ const PlaylistControl = (props: PlaylistControlProps) => {
         <FlatList
           ref={playlistRef}
           style={styles.list}
-          keyExtractor={(_, index) => index.toString()}
+          keyExtractor={(_, index) => JSON.stringify(_?.itemSource?.source || index)}
           ItemSeparatorComponent={() => (
             <View style={{ width: SEPERATOR_WIDTH }} />
           )}
@@ -120,8 +120,8 @@ const PlaylistControl = (props: PlaylistControlProps) => {
           renderItem={renderPlayListItem}
           initialScrollIndex={playlistIndex}
           getItemLayout={(_, index) => ({
-            length: TOTAL_WIDTH,
-            offset: TOTAL_WIDTH * index,
+            length: (TOTAL_WIDTH || 100),
+            offset: (TOTAL_WIDTH || 100) * index,
             index,
           })}
           horizontal
@@ -155,10 +155,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#212121',
     justifyContent: 'center',
     alignItems: 'center',
+    opacity: .5,
   },
   itemOn: {
     borderWidth: 3,
     borderColor: 'red',
+    opacity: 1,
   },
   image: {
     resizeMode: 'cover',
