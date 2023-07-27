@@ -1528,7 +1528,7 @@ const NexenPlayer = React.forwardRef<NexenPlayerRef, NexenPlayerProps>(
               pictureInPicture={true}
               playInBackground={false}
               allowsExternalPlayback={true}
-              disableFocus={true}
+              // disableFocus={true}
               playWhenInactive={true} 
             />
           ) : null
@@ -1553,9 +1553,9 @@ const NexenPlayer = React.forwardRef<NexenPlayerRef, NexenPlayerProps>(
             onSeek={_onSeek}
             onEnd={_onEnd}
             onError={_onError}
-            // minLoadRetryCount={1000}
-            // mixWithOthers="duck"
-            // ignoreSilentSwitch="ignore"
+            minLoadRetryCount={1000}
+            mixWithOthers="duck"
+            ignoreSilentSwitch="ignore"
             pictureInPicture={true}
             playInBackground={false}
             allowsExternalPlayback={true}
